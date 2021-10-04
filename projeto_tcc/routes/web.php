@@ -19,4 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(array('middleware' => 'auth'), function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/estado',[\App\Http\Controllers\EstadoController::class, 'index'])->name('estado');
+    Route::get('/cidade',[\App\Http\Controllers\CidadeController::class, 'index'])->name('cidade');
+});

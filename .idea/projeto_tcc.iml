@@ -119,6 +119,7 @@
       <excludeFolder url="file://$MODULE_DIR$/projeto_tcc/vendor/tijsverkoyen/css-to-inline-styles" />
       <excludeFolder url="file://$MODULE_DIR$/projeto_tcc/vendor/dragonmantank/cron-expression" />
       <excludeFolder url="file://$MODULE_DIR$/projeto_tcc/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/projeto_tcc/vendor/laravel/ui" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

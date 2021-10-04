@@ -113,6 +113,7 @@
       <path value="$PROJECT_DIR$/projeto_tcc/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/projeto_tcc/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/projeto_tcc/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/projeto_tcc/vendor/laravel/ui" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
