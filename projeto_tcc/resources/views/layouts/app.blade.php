@@ -43,6 +43,10 @@
                         <a href="{{ url('/cidade') }}" class="nav-link">Cidade</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ url('/consultorio') }}" class="nav-link">Consultório</a>
+                    </li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -67,6 +71,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{route('contato.index')}}">Contato</a>
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
