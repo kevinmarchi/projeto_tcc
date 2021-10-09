@@ -2,67 +2,149 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consultorio;
 use App\Models\Contato;
 use App\Models\User;
+use App\Models\ListaUtil;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
 {
 
-    public function index()
-    {
-        $oContatos = Contato::all();
+    private $tipo;
 
-        return view('contato.index', compact('oContatos'));
+    private $codigo;
+
+    public function getTipo(){
+        return $this->tipo;
+    }
+
+    public function setTipo($tipo) {
+        $this->tipo = $tipo;
+    }
+
+    public function getCodigo() {
+        return $this->codigo;
+    }
+
+    public function setCodigo($codigo){
+        $this->codigo = $codigo;
     }
 
 
-    public function create()
+    public function index($iTipo, $iCodigo)
     {
-        $oUsuarios = User::all(['usucodigo', 'usunome']);
+        $this->setTipo($iTipo);
+        $this->setCodigo($iCodigo);
 
-        return view('contato.create', compact('oUsuarios'));
+        $oContatos = $this->getContatos();
+
+        foreach ($oContatos as $oContato) {
+            $oContato->setAttribute('cnttipo', ListaUtil::getListaTipoContato($oContato->getAttribute('cnttipo')));
+            $oContato->setAttribute('cntativo', ListaUtil::getListaAtivo($oContato->getAttribute('cntativo')));
+            $oContato->setAttribute('cntpreferencial', ListaUtil::getListaContatoPreferencial($oContato->getAttribute('cntpreferencial')));
+        }
+
+        return view('contato.index',[
+            'oContatos' => $oContatos,
+            'iTipo' => $this->getTipo(),
+            'iCodigo' => $this->getCodigo()
+        ]);
     }
 
 
-    public function store(Request $request)
+    public function create($iTipo, $iCodigo)
     {
+        $oUsuario = null;
+        $oConsultorio = null;
+        $this->setTipo($iTipo);
+        $this->setCodigo($iCodigo);
+
+        if ($iTipo == 1) {
+            $oUsuario = User::query()->find($this->getCodigo(), ['usucodigo', 'usunome']);
+        } else {
+            $oConsultorio = Consultorio::query()->find($this->getCodigo(), ['concodigo', 'condescricao']);
+        }
+
+        return view('contato.create', [
+            'oUsuario' => $oUsuario,
+            'oConsultorio' => $oConsultorio,
+            'iTipo' => $this->getTipo(),
+            'iCodigo' => $this->getCodigo()
+        ]);
+    }
+
+
+    public function store(Request $request, $iTipo, $iCodigo)
+    {
+        $this->setTipo($iTipo);
+        $this->setCodigo($iCodigo);
         $oData = $request->all();
         $oData['cntpreferencial'] = $request->input('cntpreferencial', 0);
         $oData['cntativo'] = $request->input('cntativo', 0);
 
         $oContato = Contato::create($oData);
 
-        return redirect()->route('contato.index');
+        return redirect()->route('contato', ['iTipo' => $this->getTipo(), 'iCodigo' => $this->getCodigo()]);
     }
 
 
-    public function edit($id)
+    public function edit($iCodigoContato, $iTipo, $iCodigo)
     {
-        $oContato = Contato::find($id);
+        $this->setTipo($iTipo);
+        $this->setCodigo($iCodigo);
+        $oContato = Contato::find($iCodigoContato);
 
-        return view('contato.edit', compact('oContato'));
+        return view('contato.edit', [
+            'oContato' => $oContato,
+            'iTipo' => $this->getTipo(),
+            'iCodigo' => $this->getCodigo()
+        ]);
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $iCodigoContato, $iTipo, $iCodigo)
     {
+        $this->setTipo($iTipo);
+        $this->setCodigo($iCodigo);
         $oData = $request->all();
         $oData['cntpreferencial'] = $request->input('cntpreferencial', 0);
         $oData['cntativo'] = $request->input('cntativo', 0);
 
-        $oContato = Contato::find($id);
+        $oContato = Contato::find($iCodigoContato);
         $oContato->update($oData);
 
-        return redirect()->route('contato.index');
+        return redirect()->route('contato', [
+            'iTipo' => $this->getTipo(),
+            'iCodigo' => $this->getCodigo()
+        ]);
     }
 
 
-    public function destroy($id)
+    public function destroy($iCodigoContato, $iTipo, $iCodigo)
     {
-        $oContato = Contato::find($id);
+        $this->setTipo($iTipo);
+        $this->setCodigo($iCodigo);
+        $oContato = Contato::find($iCodigoContato);
         $oContato->delete();
 
-        return redirect()->route('contato.index');
+        return redirect()->route('contato', [
+            'iTipo' => $this->getTipo(),
+            'iCodigo' => $this->getCodigo()
+        ]);
     }
+
+    private function getContatos() {
+        $oQuery = Contato::query();
+        switch ($this->getTipo()) {
+            case 1:
+                $oQuery->where('usucodigo', '=', $this->getCodigo());
+                break;
+            case 2:
+                $oQuery->where('concodigo', '=', $this->getCodigo());
+                break;
+        }
+        return $oQuery->get();
+    }
+
 }

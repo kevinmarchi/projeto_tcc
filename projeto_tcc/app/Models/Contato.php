@@ -14,15 +14,21 @@ class Contato extends Model
     protected $primaryKey = 'cntcodigo';
 
     protected $fillable = [
-        'cntativo',
         'cntdescricao',
+        'cnttipo',
         'cntpreferencial',
-        'usucodigo'
+        'usucodigo',
+        'concodigo',
+        'cntativo'
     ];
 
     public $timestamps = false;
 
     public function user() {
         return $this->belongsTo(User::class, 'usucodigo', 'usucodigo');
+    }
+
+    public function consultorio() {
+        return $this->belongsTo(Consultorio::class, 'concodigo', 'concodigo');
     }
 }

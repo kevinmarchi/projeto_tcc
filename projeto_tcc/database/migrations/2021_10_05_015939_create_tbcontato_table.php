@@ -15,12 +15,15 @@ class CreateTbcontatoTable extends Migration
     {
         Schema::create('tbcontato', function (Blueprint $table) {
             $table->id('cntcodigo');
-            $table->boolean('cntativo');
+            $table->smallInteger('cnttipo');
             $table->text('cntdescricao');
-            $table->boolean('cntpreferencial');
+            $table->smallInteger('cntpreferencial');
             $table->unsignedBigInteger('usucodigo')->nullable();
+            $table->unsignedBigInteger('concodigo')->nullable();
+            $table->smallInteger('cntativo');
 
             $table->foreign('usucodigo')->references('usucodigo')->on('users');
+            $table->foreign('concodigo')->references('concodigo')->on('tbconsultorio');
         });
     }
 

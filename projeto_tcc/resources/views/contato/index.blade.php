@@ -8,16 +8,19 @@
                 <div class="card">
                     <div class="card-header">{{ __('Contato') }}</div>
                     <div class="card-body">
-                        <a href="{{route('contato.create')}}" class="btn btn-lg btn-success">Criar Contato</a>
+                        <a href="{{route('contato/create' , ['iTipo' => $iTipo, 'iCodigo' => $iCodigo])}}" class="btn btn-lg btn-success">Criar Contato</a>
+{{--                        @dd($oContatos)--}}
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th>Código</th>
+                                    <th>Tipo</th>
                                     <th>Descrição</th>
                                     <th>Preferencial</th>
                                     <th>Ativo</th>
                                     <th>Usuário</th>
+                                    <th>Consultório</th>
                                     <th>Ações</th>
                                 </tr>
                                 </thead>
@@ -25,26 +28,16 @@
                                 @foreach($oContatos as $oContato)
                                     <tr>
                                         <td>{{$oContato->cntcodigo}}</td>
+                                        <td>{{$oContato->cnttipo}}</td>
                                         <td>{{$oContato->cntdescricao}}</td>
-                                        <td>
-                                            @if($oContato->cntpreferencial)
-                                                Sim
-                                            @else
-                                                Não
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($oContato->cntativo)
-                                                Sim
-                                            @else
-                                                Não
-                                            @endif
-                                        </td>
-                                        <td>{{$oContato->user->usunome}}</td>
+                                        <td>{{$oContato->cntpreferencial}}</td>
+                                        <td>{{$oContato->cntativo}}</td>
+                                        <td>@isset($oContato->user->usunome) {{$oContato->user->usunome}} @endisset</td>
+                                        <td>@isset($oContato->consultorio->condescricao) {{$oContato->consultorio->condescricao}} @endisset</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{route('contato.edit', array('contato'=>$oContato->cntcodigo))}}" class="btn btn-sm btn-primary">Editar</a>
-                                                <form action="{{route('contato.destroy', array('contato'=>$oContato->cntcodigo))}}" method="POST">
+                                                <a href="{{route('contato/edit', ['iCodigoContato'=>$oContato->cntcodigo, 'iTipo' => $iTipo, 'iCodigo' => $iCodigo])}}" class="btn btn-sm btn-primary">Editar</a>
+                                                <form action="{{route('contato/destroy', ['iCodigoContato'=>$oContato->cntcodigo, 'iTipo' => $iTipo, 'iCodigo' => $iCodigo])}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger">Deletar</button>

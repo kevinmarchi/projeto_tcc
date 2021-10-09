@@ -72,7 +72,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" href="{{route('contato.index')}}">Contato</a>
+                                <a class="dropdown-item" href="{{route('contato' , ['iTipo' => '1', 'iCodigo' => Auth::user()->usucodigo])}}">Contato</a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
