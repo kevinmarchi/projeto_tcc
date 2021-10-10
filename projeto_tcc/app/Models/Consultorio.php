@@ -16,7 +16,12 @@ class Consultorio extends Model
     protected $fillable = [
         'condescricao',
         'conativo',
+        'endcodigo'
     ];
 
     public $timestamps = false;
+
+    public function endereco() {
+        return $this->belongsTo(Endereco::class, 'endcodigo', 'endcodigo');
+    }
 }

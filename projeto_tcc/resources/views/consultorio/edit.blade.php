@@ -19,6 +19,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Endereço</label>
+                                <select name="endcodigo" class="form-control" disabled>
+                                    <option value="{{$oConsultorio->endereco->endcodigo}}">{{$oConsultorio->endereco->endlogradouro}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Ativo</label>
                                 <input type="checkbox" name="cntativo" class="form-check" value="1" checked>
                             </div>

@@ -44,6 +44,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ url('/endereco') }}" class="nav-link">Endereço</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ url('/consultorio') }}" class="nav-link">Consultório</a>
                     </li>
 

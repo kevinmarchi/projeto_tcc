@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Consultorio;
+use App\Models\Endereco;
 use Illuminate\Http\Request;
 
 class ConsultorioController extends Controller
@@ -17,8 +18,9 @@ class ConsultorioController extends Controller
 
     public function create()
     {
+        $oEnderecos = Endereco::query()->orderBy('endlogradouro')->get();
 
-        return view('consultorio.create');
+        return view('consultorio.create', compact('oEnderecos'));
     }
 
 

@@ -18,6 +18,15 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Endereço</label>
+                                <select name="endcodigo" class="form-control" required>
+                                    @foreach($oEnderecos as $oEndereco)
+                                        <option value="{{$oEndereco->endcodigo}}" @if($oEndereco->endcodigo == old('endcodigo')) selected @endif>{{$oEndereco->endlogradouro}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Ativo</label>
                                 <input type="checkbox" name="conativo" class="form-check" value="1" checked>
                             </div>

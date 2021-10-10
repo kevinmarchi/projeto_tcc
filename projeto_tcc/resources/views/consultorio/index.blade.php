@@ -15,6 +15,8 @@
                                 <tr>
                                     <th>Código</th>
                                     <th>Descrição</th>
+                                    <th>Endereço - Código</th>
+                                    <th>Endereço - Logradouro</th>
                                     <th>Ativo</th>
                                     <th>Ações</th>
                                 </tr>
@@ -24,6 +26,8 @@
                                     <tr>
                                         <td>{{$oConsultorio->concodigo}}</td>
                                         <td>{{$oConsultorio->condescricao}}</td>
+                                        <td>{{$oConsultorio->endereco->endcodigo}}</td>
+                                        <td>{{$oConsultorio->endereco->endlogradouro}}</td>
                                         <td>
                                             @if($oConsultorio->conativo)
                                                 Sim

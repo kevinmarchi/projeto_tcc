@@ -39,4 +39,5 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::delete('/consultoriohorario/destroy/{iCodigoConsultorioHorario}/{iCodigo}', [\App\Http\Controllers\ConsultorioHorarioController::class, 'destroy'])->name('consultoriohorario/destroy');
 
     Route::resource('consultorio', \App\Http\Controllers\ConsultorioController::class);
+    Route::resource('endereco', \App\Http\Controllers\EnderecoController::class);
 });

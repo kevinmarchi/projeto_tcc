@@ -17,6 +17,9 @@ class CreateTbconsultorioTable extends Migration
             $table->id('concodigo');
             $table->string('condescricao', 100);
             $table->boolean('conativo');
+            $table->unsignedBigInteger('endcodigo');
+
+            $table->foreign('endcodigo')->references('endcodigo')->on('tbendereco');
         });
     }
 
