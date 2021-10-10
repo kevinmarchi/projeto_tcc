@@ -51,6 +51,20 @@
                         <a href="{{ url('/consultorio') }}" class="nav-link">Consultório</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ url('/especialidade') }}" class="nav-link">Especialidade</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            Médico
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{url('#')}}">Teste</a>
+                        </div>
+                    </li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
