@@ -44,4 +44,9 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::resource('medicoespecialidade', \App\Http\Controllers\MedicoEspecialidadeController::class);
     Route::resource('medicoconsultorio', \App\Http\Controllers\MedicoConsultorioController::class);
     Route::resource('calendario', \App\Http\Controllers\CalendarioController::class);
+
+    Route::get('/usuariomedicoconsultorio/{iCodigo}', [\App\Http\Controllers\UsuarioMedicoConsultorioController::class, 'index'])->name('usuariomedicoconsultorio');
+    Route::get('/usuariomedicoconsultorio/create/{iCodigo}', [\App\Http\Controllers\UsuarioMedicoConsultorioController::class, 'create'])->name('usuariomedicoconsultorio/create');
+    Route::post('/usuariomedicoconsultorio/store/{iCodigo}', [\App\Http\Controllers\UsuarioMedicoConsultorioController::class, 'store'])->name('usuariomedicoconsultorio/store');
+    Route::delete('/usuariomedicoconsultorio/destroy/{iCodigoUsuarioMedicoConsultorio}/{iCodigo}', [\App\Http\Controllers\UsuarioMedicoConsultorioController::class, 'destroy'])->name('usuariomedicoconsultorio/destroy');
 });
