@@ -61,7 +61,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{url('#')}}">Teste</a>
+                            <a class="dropdown-item" href="{{url('/medicoespecialidade')}}">Especialidade</a>
                         </div>
                     </li>
 
