@@ -42,4 +42,5 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::resource('endereco', \App\Http\Controllers\EnderecoController::class);
     Route::resource('especialidade', \App\Http\Controllers\EspecialidadeController::class);
     Route::resource('medicoespecialidade', \App\Http\Controllers\MedicoEspecialidadeController::class);
+    Route::resource('medicoconsultorio', \App\Http\Controllers\MedicoConsultorioController::class);
 });

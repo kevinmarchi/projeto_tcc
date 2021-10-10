@@ -23,7 +23,6 @@ class MedicoEspecialidadeController extends Controller
         $oMedico = Medico::query()->join('users', 'tbmedico.usucodigo', '=', 'users.usucodigo')
                                   ->where('tbmedico.usucodigo', '=', Auth::user()->usucodigo)->get()[0];
         $oEspecialidades = Especialidade::all();
-//        dd($oMedico);
 
         return view('medicoespecialidade.create', [
             'oMedico' => $oMedico,
