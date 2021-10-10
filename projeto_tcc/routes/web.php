@@ -43,4 +43,5 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::resource('especialidade', \App\Http\Controllers\EspecialidadeController::class);
     Route::resource('medicoespecialidade', \App\Http\Controllers\MedicoEspecialidadeController::class);
     Route::resource('medicoconsultorio', \App\Http\Controllers\MedicoConsultorioController::class);
+    Route::resource('calendario', \App\Http\Controllers\CalendarioController::class);
 });

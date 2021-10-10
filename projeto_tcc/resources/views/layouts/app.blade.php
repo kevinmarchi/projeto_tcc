@@ -68,6 +68,10 @@
 
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ url('/calendario') }}" class="nav-link">Calendário</a>
+                    </li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
