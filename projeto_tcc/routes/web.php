@@ -31,7 +31,12 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::put('/contato/update/{iCodigoContato}/{iTipo}/{iCodigo}', [\App\Http\Controllers\ContatoController::class, 'update'])->name('contato/update');
     Route::delete('/contato/destroy/{iCodigoContato}/{iTipo}/{iCodigo}', [\App\Http\Controllers\ContatoController::class, 'destroy'])->name('contato/destroy');
 
-    Route::resource('contato', \App\Http\Controllers\ContatoController::class);
+    Route::get('/consultoriohorario/{iCodigo}', [\App\Http\Controllers\ConsultorioHorarioController::class, 'index'])->name('consultoriohorario');
+    Route::get('/consultoriohorario/create/{iCodigo}', [\App\Http\Controllers\ConsultorioHorarioController::class, 'create'])->name('consultoriohorario/create');
+    Route::post('/consultoriohorario/store/{iCodigo}', [\App\Http\Controllers\ConsultorioHorarioController::class, 'store'])->name('consultoriohorario/store');
+    Route::get('/consultoriohorario/{iCodigoConsultorioHorario}/edit/{iCodigo}', [\App\Http\Controllers\ConsultorioHorarioController::class, 'edit'])->name('consultoriohorario/edit');
+    Route::put('/consultoriohorario/update/{iCodigoConsultorioHorario}/{iCodigo}', [\App\Http\Controllers\ConsultorioHorarioController::class, 'update'])->name('consultoriohorario/update');
+    Route::delete('/consultoriohorario/destroy/{iCodigoConsultorioHorario}/{iCodigo}', [\App\Http\Controllers\ConsultorioHorarioController::class, 'destroy'])->name('consultoriohorario/destroy');
 
     Route::resource('consultorio', \App\Http\Controllers\ConsultorioController::class);
 });

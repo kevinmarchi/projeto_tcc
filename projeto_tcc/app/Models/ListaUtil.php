@@ -26,4 +26,11 @@ class ListaUtil
         }
     }
 
+    public static function getListaTipoConsultorioHorario($iValor) {
+        switch ($iValor) {
+            case 1: return 'Consulta';
+            case 2: return 'Intervalo';
+        }
+    }
+
 }

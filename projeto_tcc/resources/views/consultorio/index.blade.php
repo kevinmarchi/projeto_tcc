@@ -40,6 +40,7 @@
                                                     <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
                                                 </form>
                                                 <a href="{{route('contato', ['iTipo' => '2', 'iCodigo' => $oConsultorio->concodigo])}}" class="btn btn-sm btn-success">Contatos</a>
+                                                <a href="{{route('consultoriohorario', ['iCodigo' => $oConsultorio->concodigo])}}" class="btn btn-sm btn-secondary">Horário</a>
                                             </div>
                                         </td>
                                     </tr>
