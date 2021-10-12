@@ -56,4 +56,11 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::get('/agenda/{iCodigoAgenda}/edit/{iCodigo}', [\App\Http\Controllers\AgendaController::class, 'edit'])->name('agenda/edit');
     Route::put('/agenda/update/{iCodigoAgenda}/{iCodigo}', [\App\Http\Controllers\AgendaController::class, 'update'])->name('agenda/update');
     Route::delete('/agenda/destroy/{iCodigoAgenda}/{iCodigo}', [\App\Http\Controllers\AgendaController::class, 'destroy'])->name('agenda/destroy');
+
+    Route::get('/agendahorario/{iCodigo}', [\App\Http\Controllers\AgendaHorarioController::class, 'index'])->name('agendahorario');
+    Route::get('/agendahorario/create/{iCodigo}', [\App\Http\Controllers\AgendaHorarioController::class, 'create'])->name('agendahorario/create');
+    Route::post('/agendahorario/store/{iCodigo}', [\App\Http\Controllers\AgendaHorarioController::class, 'store'])->name('agendahorario/store');
+    Route::get('/agendahorario/{iCodigoAgendaHorario}/edit/{iCodigo}', [\App\Http\Controllers\AgendaHorarioController::class, 'edit'])->name('agendahorario/edit');
+    Route::put('/agendahorario/update/{iCodigoAgendaHorario}/{iCodigo}', [\App\Http\Controllers\AgendaHorarioController::class, 'update'])->name('agendahorario/update');
+    Route::delete('/agendahorario/destroy/{iCodigoAgendaHorario}/{iCodigo}', [\App\Http\Controllers\AgendaHorarioController::class, 'destroy'])->name('agendahorario/destroy');
 });

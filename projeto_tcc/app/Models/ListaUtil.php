@@ -33,4 +33,11 @@ class ListaUtil
         }
     }
 
+    public static function getListaSituacaoAgendaHorario($iValor) {
+        switch ($iValor) {
+            case 1: return 'Disponível';
+            case 2: return 'Alocado';
+        }
+    }
+
 }

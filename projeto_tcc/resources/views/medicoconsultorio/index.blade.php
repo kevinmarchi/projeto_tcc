@@ -32,9 +32,9 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
                                                 </form>
+                                                <a href="{{route('usuariomedicoconsultorio', ['iCodigo' => $oMedicoConsultorio->meccodigo])}}" class="btn btn-sm btn-secondary">Equipe Administrativa</a>
+                                                <a href="{{route('agenda', ['iCodigo' => $oMedicoConsultorio->meccodigo])}}" class="btn btn-sm btn-success">Agenda</a>
                                             </div>
-                                            <a href="{{route('usuariomedicoconsultorio', ['iCodigo' => $oMedicoConsultorio->meccodigo])}}" class="btn btn-sm btn-secondary">Equipe Administrativa</a>
-                                            <a href="{{route('agenda', ['iCodigo' => $oMedicoConsultorio->meccodigo])}}" class="btn btn-sm btn-success">Agenda</a>
                                         </td>
                                     </tr>
                                 @endforeach

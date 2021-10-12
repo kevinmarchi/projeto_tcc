@@ -35,6 +35,7 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
                                                 </form>
+                                                <a href="{{route('agendahorario', ['iCodigo' => $oAgenda->agencodigo])}}" class="btn btn-sm btn-success">Itens</a>
                                             </div>
                                         </td>
                                     </tr>
