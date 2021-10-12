@@ -49,4 +49,11 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::get('/usuariomedicoconsultorio/create/{iCodigo}', [\App\Http\Controllers\UsuarioMedicoConsultorioController::class, 'create'])->name('usuariomedicoconsultorio/create');
     Route::post('/usuariomedicoconsultorio/store/{iCodigo}', [\App\Http\Controllers\UsuarioMedicoConsultorioController::class, 'store'])->name('usuariomedicoconsultorio/store');
     Route::delete('/usuariomedicoconsultorio/destroy/{iCodigoUsuarioMedicoConsultorio}/{iCodigo}', [\App\Http\Controllers\UsuarioMedicoConsultorioController::class, 'destroy'])->name('usuariomedicoconsultorio/destroy');
+
+    Route::get('/agenda/{iCodigo}', [\App\Http\Controllers\AgendaController::class, 'index'])->name('agenda');
+    Route::get('/agenda/create/{iCodigo}', [\App\Http\Controllers\AgendaController::class, 'create'])->name('agenda/create');
+    Route::post('/agenda/store/{iCodigo}', [\App\Http\Controllers\AgendaController::class, 'store'])->name('agenda/store');
+    Route::get('/agenda/{iCodigoAgenda}/edit/{iCodigo}', [\App\Http\Controllers\AgendaController::class, 'edit'])->name('agenda/edit');
+    Route::put('/agenda/update/{iCodigoAgenda}/{iCodigo}', [\App\Http\Controllers\AgendaController::class, 'update'])->name('agenda/update');
+    Route::delete('/agenda/destroy/{iCodigoAgenda}/{iCodigo}', [\App\Http\Controllers\AgendaController::class, 'destroy'])->name('agenda/destroy');
 });
