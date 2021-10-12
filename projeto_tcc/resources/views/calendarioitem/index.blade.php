@@ -6,34 +6,32 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('Calendário') }}</div>
+                    <div class="card-header">{{ __('Itens do Calendário') }}</div>
                     <div class="card-body">
-                        <a href="{{route('calendario.create')}}" class="btn btn-lg btn-success">Criar Calendário</a>
+                        <a href="{{route('calendarioitem/create', ['iCodigo' => $iCodigo])}}" class="btn btn-lg btn-success">Incluir Item do Calendário</a>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th>Ano</th>
-                                    <th>Ativo</th>
+                                    <th>Calendário</th>
+                                    <th>Data</th>
                                     <th>Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($oCalendarios as $oCalendario)
+                                @foreach($oCalendarioItens as $oCalendarioItem)
                                     <tr>
-                                        <td>{{$oCalendario->calcodigo}}</td>
-                                        <td>{{$oCalendario->calano}}</td>
-                                        <td>{{$oCalendario->calativo}}</td>
+                                        <td>{{$oCalendarioItem->caicodigo}}</td>
+                                        <td>{{$oCalendarioItem->calendario->calano}}</td>
+                                        <td>{{$oCalendarioItem->caidata}}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{route('calendario.edit', array('calendario'=>$oCalendario->calcodigo))}}" class="btn btn-sm btn-primary">Editar</a>
-                                                <form action="{{route('calendario.destroy', array('calendario'=>$oCalendario->calcodigo))}}" method="POST">
+                                                <form action="{{route('calendarioitem/destroy', ['iCodigoCalendarioItem'=>$oCalendarioItem->caicodigo, 'iCodigo' => $iCodigo])}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
                                                 </form>
-                                                <a href="{{route('calendarioitem', ['iCodigo' => $oCalendario->calcodigo])}}" class="btn btn-sm btn-secondary">Itens</a>
                                             </div>
                                         </td>
                                     </tr>

@@ -15,7 +15,6 @@ class Calendario extends Model
 
     protected $fillable = [
         'calano',
-        'caldata',
         'calativo'
     ];
 

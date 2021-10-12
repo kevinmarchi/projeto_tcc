@@ -14,7 +14,7 @@ return [
     */
 
     'failed' => 'Essas credenciais não correspondem aos nossos registros.',
-    'password' => 'A semja está incorreta.',
+    'password' => 'A senha está incorreta.',
     'throttle' => 'Muitas tentativas de login, tente novamente após :seconds seconds.',
 
 ];

@@ -16,7 +16,6 @@ class CreateTbcalendarioTable extends Migration
         Schema::create('tbcalendario', function (Blueprint $table) {
             $table->id('calcodigo');
             $table->integer('calano');
-            $table->date('caldata');
             $table->smallInteger('calativo');
         });
     }

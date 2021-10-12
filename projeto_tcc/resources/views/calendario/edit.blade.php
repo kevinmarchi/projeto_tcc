@@ -19,11 +19,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Data</label>
-                                <input type="date" name="caldata" class="form-control" value="{{$oCalendario->caldata}}" required>
-                            </div>
-
-                            <div class="form-group">
                                 <label>Ativo</label>
                                 <input type="checkbox" name="calativo" class="form-check" value="1" @if ($oCalendario->calativo == 1) checked @endif>
                             </div>

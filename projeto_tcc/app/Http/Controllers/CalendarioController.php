@@ -16,7 +16,6 @@ class CalendarioController extends Controller
 
         foreach ($oCalendarios as $oCalendario) {
             $oCalendario->setAttribute('calativo', ListaUtil::getListaAtivo($oCalendario->getAttribute('calativo')));
-            $oCalendario->setAttribute('caldata', Carbon::parse($oCalendario->getAttribute('caldata'))->format('d/m/Y'));
         }
 
         return view('calendario.index', compact('oCalendarios'));
