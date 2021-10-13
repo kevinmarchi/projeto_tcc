@@ -19,4 +19,8 @@ class Calendario extends Model
     ];
 
     public $timestamps = false;
+
+    public function calendarioitem() {
+        return $this->hasMany(CalendarioItem::class, 'calcodigo', 'calcodigo');
+    }
 }

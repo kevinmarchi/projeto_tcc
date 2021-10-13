@@ -24,4 +24,8 @@ class Consultorio extends Model
     public function endereco() {
         return $this->belongsTo(Endereco::class, 'endcodigo', 'endcodigo');
     }
+
+    public function consultoriohorario() {
+        return $this->hasMany(ConsultorioHorario::class, 'concodigo', 'concodigo');
+    }
 }

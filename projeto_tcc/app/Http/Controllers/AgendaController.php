@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use App\Models\AgendaHorario;
 use App\Models\Calendario;
 use App\Models\MedicoConsultorio;
 use Illuminate\Http\Request;
@@ -50,7 +51,8 @@ class AgendaController extends Controller
         $this->setCodigo($iCodigo);
         $oData = $request->all();
 
-        Agenda::create($oData);
+        $oAgenda = Agenda::create($oData);
+        $this->criaItensAgenda($oAgenda);
 
         return redirect()->route('agenda', ['iCodigo' => $this->getCodigo()]);
     }
@@ -96,5 +98,26 @@ class AgendaController extends Controller
         $oQuery = Agenda::query();
         $oQuery->where('meccodigo', '=', $this->getCodigo());
         return $oQuery->get();
+    }
+
+    private function criaItensAgenda($oAgenda) {
+        $oCalendarioItens = $oAgenda->calendario->calendarioitem;
+        $oConsultorioHorarios = $oAgenda->medicoconsultorio->consultorio->consultoriohorario;
+
+        foreach ($oCalendarioItens as $oCalendarioItem) {
+
+            foreach ($oConsultorioHorarios as $oConsultorioHorario) {
+                $oData = [
+                    'agencodigo' => $oAgenda->agencodigo,
+                    'aghdescricao' => 'Item dia: '. $oCalendarioItem->caidata. ' De: '. $oConsultorioHorario->cohhorainicio. ' Até: '.$oConsultorioHorario->cohhorafim,
+                    'aghdata' => $oCalendarioItem->caidata,
+                    'aghhorarioinicio' => $oConsultorioHorario->cohhorainicio,
+                    'aghhorariofim' => $oConsultorioHorario->cohhorafim,
+
+                ];
+                AgendaHorario::create($oData);
+            }
+        }
+
     }
 }
