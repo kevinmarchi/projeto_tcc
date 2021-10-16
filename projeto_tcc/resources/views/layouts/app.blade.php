@@ -36,6 +36,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ url('/consulta') }}" class="nav-link">Consulta</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ url('/estado') }}" class="nav-link">Estado</a>
                     </li>
 

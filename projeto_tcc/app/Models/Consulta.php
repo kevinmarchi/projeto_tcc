@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Medico extends Model
+class Consulta extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbmedico';
+    protected $table = 'tbconsulta';
 
-    protected $primaryKey = 'medcodigo';
+    protected $primaryKey = 'cnscodigo';
 
     protected $fillable = [
-        'medregistro',
-        'usucodigo'
+        'cnssituacao',
+        'usucodigo',
+        'aghcodigo'
     ];
 
     public $timestamps = false;
@@ -24,7 +25,7 @@ class Medico extends Model
         return $this->belongsTo(User::class, 'usucodigo', 'usucodigo');
     }
 
-    public function medicoespecialidade() {
-        return $this->hasMany(MedicoEspecialidade::class, 'medcodigo', 'medcodigo');
+    public function agendahorario() {
+        return $this->belongsTo(AgendaHorario::class, 'aghcodigo', 'aghcodigo');
     }
 }

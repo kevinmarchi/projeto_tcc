@@ -68,4 +68,11 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::get('/calendarioitem/create/{iCodigo}', [\App\Http\Controllers\CalendarioItemController::class, 'create'])->name('calendarioitem/create');
     Route::post('/calendarioitem/store/{iCodigo}', [\App\Http\Controllers\CalendarioItemController::class, 'store'])->name('calendarioitem/store');
     Route::delete('/calendarioitem/destroy/{iCodigoCalendarioItem}/{iCodigo}', [\App\Http\Controllers\CalendarioItemController::class, 'destroy'])->name('calendarioitem/destroy');
+
+    Route::get('/consulta', [\App\Http\Controllers\ConsultaController::class, 'index'])->name('consulta');
+    Route::get('/consulta/create/{iCodigo}', [\App\Http\Controllers\ConsultaController::class, 'create'])->name('consulta/create');
+    Route::post('/consulta/store', [\App\Http\Controllers\ConsultaController::class, 'store'])->name('consulta/store');
+    Route::get('/consulta/cancel/{consulta}', [\App\Http\Controllers\ConsultaController::class, 'cancel'])->name('consulta/cancel');
+    Route::get('/consulta/confirm/{consulta}', [\App\Http\Controllers\ConsultaController::class, 'confirm'])->name('consulta/confirm');
+    Route::get('/consulta/finalize/{consulta}', [\App\Http\Controllers\ConsultaController::class, 'finalize'])->name('consulta/finalize');
 });

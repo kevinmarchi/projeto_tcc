@@ -27,4 +27,8 @@ class MedicoConsultorio extends Model
     public function medico() {
         return $this->belongsTo(Medico::class, 'medcodigo', 'medcodigo');
     }
+
+    public function agenda() {
+        return $this->hasMany(Agenda::class, 'meccodigo', 'meccodigo');
+    }
 }

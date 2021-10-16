@@ -28,4 +28,8 @@ class Agenda extends Model
     public function calendario() {
         return $this->belongsTo(Calendario::class, 'calcodigo', 'calcodigo');
     }
+
+    public function agendahorario() {
+        return $this->hasMany(AgendaHorario::class, 'aghcodigo', 'aghcodigo');
+    }
 }

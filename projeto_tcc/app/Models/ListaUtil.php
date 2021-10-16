@@ -40,4 +40,13 @@ class ListaUtil
         }
     }
 
+    public static function getListaSituacaoConsulta($iValor) {
+        switch ($iValor) {
+            case 1: return 'Aguardando';
+            case 2: return 'Confirmada';
+            case 3: return 'Finalizada';
+            case 4: return 'Cancelada';
+        }
+    }
+
 }
