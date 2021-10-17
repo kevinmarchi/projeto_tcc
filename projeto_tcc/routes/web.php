@@ -75,4 +75,9 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::get('/consulta/cancel/{consulta}', [\App\Http\Controllers\ConsultaController::class, 'cancel'])->name('consulta/cancel');
     Route::get('/consulta/confirm/{consulta}', [\App\Http\Controllers\ConsultaController::class, 'confirm'])->name('consulta/confirm');
     Route::get('/consulta/finalize/{consulta}', [\App\Http\Controllers\ConsultaController::class, 'finalize'])->name('consulta/finalize');
+
+    Route::get('/avaliacao/{iMedicoConsultorio}', [\App\Http\Controllers\AvaliacaoController::class, 'index'])->name('avaliacao');
+    Route::get('/avaliacao/create/{iCodigoConsulta}', [\App\Http\Controllers\AvaliacaoController::class, 'create'])->name('avaliacao/create');
+    Route::post('/avaliacao/store/{iCodigoConsulta}', [\App\Http\Controllers\AvaliacaoController::class, 'store'])->name('avaliacao/store');
+    Route::put('/avaliacao/{iCodigo}/update/{iCodigoConsulta}', [\App\Http\Controllers\AvaliacaoController::class, 'update'])->name('avaliacao/update');
 });

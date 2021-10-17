@@ -76,7 +76,7 @@ class ConsultaController extends Controller
         $oAgendaHorario = AgendaHorario::find($oData['aghcodigo']);
         $oAgendaHorario->update(['aghsituacao' => 2]);
 
-        return redirect()->route('home');
+        return redirect()->route('consulta');
     }
 
     public function cancel($consulta) {

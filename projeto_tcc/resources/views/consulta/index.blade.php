@@ -26,6 +26,7 @@
                                     <thead>
                                     <tr>
                                         <th>Código</th>
+                                        <th>Usuário</th>
                                         <th>Médico</th>
                                         <th>Consultório</th>
                                         <th>Data</th>
@@ -39,6 +40,7 @@
                                     @foreach($oConsultasAdmin as $oConsultaAdmin)
                                         <tr>
                                             <td>{{$oConsultaAdmin->cnscodigo}}</td>
+                                            <td>{{$oConsultaAdmin->user->usunome}}</td>
                                             <td>{{$oConsultaAdmin->agendahorario->agenda->medicoconsultorio->medico->user->usunome}}</td>
                                             <td>{{$oConsultaAdmin->agendahorario->agenda->medicoconsultorio->consultorio->condescricao}}</td>
                                             <td>{{\Carbon\Carbon::parse($oConsultaAdmin->agendahorario->aghdata)->format('d/m/Y')}}</td>
@@ -50,6 +52,7 @@
                                                     <a href="{{route('consulta/cancel', ['consulta'=>$oConsultaAdmin->cnscodigo])}}" class="btn btn-sm btn-danger">Cancelar</a>
                                                     <a href="{{route('consulta/confirm', ['consulta'=>$oConsultaAdmin->cnscodigo])}}" class="btn btn-sm btn-success">Confirmar</a>
                                                     <a href="{{route('consulta/finalize', ['consulta'=>$oConsultaAdmin->cnscodigo])}}" class="btn btn-sm btn-primary">Finalizar</a>
+                                                    <a href="{{route('contato', ['iTipo' => '1', 'iCodigo' => $oConsultaAdmin->usucodigo])}}" class="btn btn-sm btn-secondary">Contato</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -86,6 +89,9 @@
                                                     <td>
                                                         <div class="btn-group">
                                                             <a href="{{route('consulta/cancel', ['consulta'=>$oConsultaUsuario->cnscodigo])}}" class="btn btn-sm btn-danger">Cancelar</a>
+                                                            @if($oConsultaUsuario->cnssituacao == 'Finalizada')
+                                                                <a href="{{route('avaliacao/create', ['iCodigoConsulta'=>$oConsultaUsuario->cnscodigo])}}" class="btn btn-sm btn-primary">Avaliação</a>
+                                                            @endif
                                                         </div>
                                                     </td>
                                                 </tr>

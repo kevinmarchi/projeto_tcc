@@ -37,6 +37,7 @@
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{route('consulta/create', ['iCodigo' => $oMedico->meccodigo])}}" class="btn btn-sm btn-primary">Agendar</a>
+                                            <a href="{{route('avaliacao', ['iMedicoConsultorio' => $oMedico->meccodigo])}}" class="btn btn-sm btn-secondary">Avaliações</a>
                                         </div>
                                     </td>
                                 </tr>
