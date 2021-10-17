@@ -21,6 +21,7 @@
                                 <th>Médico</th>
                                 <th>Consultório</th>
                                 <th>Especialidade(s)</th>
+                                <th>Avaliações</th>
                                 <th>Ações</th>
                             </tr>
                             </thead>
@@ -34,6 +35,7 @@
                                             {{$oMedicoEspecialidade->especialidade->espnome}},
                                         @endforeach
                                     </td>
+                                    <td></td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{route('consulta/create', ['iCodigo' => $oMedico->meccodigo])}}" class="btn btn-sm btn-primary">Agendar</a>

@@ -28,8 +28,8 @@ class ConsultaController extends Controller
                           ->join('tbmedicoconsultorio', 'tbmedicoconsultorio.meccodigo', '=', 'tbagenda.meccodigo')
                           ->join('tbmedico', 'tbmedico.medcodigo', '=', 'tbmedicoconsultorio.medcodigo')
                           ->leftJoin('tbusuariomedicoconsultorio', 'tbusuariomedicoconsultorio.meccodigo', '=', 'tbmedicoconsultorio.meccodigo')
-                          ->where('tbmedico.usucodigo', '=', Auth::user()->usucodigo, 'or')
-                          ->where('tbusuariomedicoconsultorio.usucodigo', '=', Auth::user()->usucodigo)
+                          ->where('tbmedico.usucodigo', '=', Auth::user()->usucodigo)
+                          ->where('tbusuariomedicoconsultorio.usucodigo', '=', Auth::user()->usucodigo, 'OR')
                           ->get();
 
         foreach ($oConsultasAdmin as $oConsultaAdmin) {

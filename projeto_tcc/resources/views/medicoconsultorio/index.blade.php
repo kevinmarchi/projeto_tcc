@@ -8,7 +8,12 @@
                 <div class="card">
                     <div class="card-header">{{ __('Consultório do Médico') }}</div>
                     <div class="card-body">
-                        <a href="{{route('medicoconsultorio.create')}}" class="btn btn-lg btn-success">Criar Consultório do Médico</a>
+                        @php
+                            $bMedico = isset(\App\Models\Medico::query()->join('users', 'tbmedico.usucodigo', '=', 'users.usucodigo')->where('tbmedico.usucodigo', '=', Auth::user()->usucodigo)->get()[0])
+                        @endphp
+                        @if($bMedico)
+                            <a href="{{route('medicoconsultorio.create')}}" class="btn btn-lg btn-success">Criar Consultório do Médico</a>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>

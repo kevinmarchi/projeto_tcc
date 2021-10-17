@@ -40,7 +40,7 @@
                                     @foreach($oConsultasAdmin as $oConsultaAdmin)
                                         <tr>
                                             <td>{{$oConsultaAdmin->cnscodigo}}</td>
-                                            <td>{{$oConsultaAdmin->user->usunome}}</td>
+                                            <td>{{\App\Models\Consulta::find($oConsultaAdmin->cnscodigo)->user->usunome}}</td>
                                             <td>{{$oConsultaAdmin->agendahorario->agenda->medicoconsultorio->medico->user->usunome}}</td>
                                             <td>{{$oConsultaAdmin->agendahorario->agenda->medicoconsultorio->consultorio->condescricao}}</td>
                                             <td>{{\Carbon\Carbon::parse($oConsultaAdmin->agendahorario->aghdata)->format('d/m/Y')}}</td>

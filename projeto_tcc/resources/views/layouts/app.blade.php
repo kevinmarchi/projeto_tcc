@@ -31,50 +31,63 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
 
-                    <li class="nav-item">
-                        <a href="{{ url('/home') }}" class="nav-link">Home</a>
-                    </li>
+                    @auth
 
-                    <li class="nav-item">
-                        <a href="{{ url('/consulta') }}" class="nav-link">Consulta</a>
-                    </li>
+                        @php
+                            $bMedico = isset(\App\Models\Medico::query()->where('usucodigo', '=', Auth::user()->usucodigo)->get()[0]);
+                            $bUsuarioAdm = isset(\App\Models\UsuarioMedicoConsultorio::query()->where('usucodigo', '=', Auth::user()->usucodigo)->get()[0]);
+                        @endphp
 
-                    <li class="nav-item">
-                        <a href="{{ url('/estado') }}" class="nav-link">Estado</a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/home') }}" class="nav-link">Home</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{ url('/cidade') }}" class="nav-link">Cidade</a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/consulta') }}" class="nav-link">Consulta</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{ url('/endereco') }}" class="nav-link">Endereço</a>
-                    </li>
+                        @if($bMedico)
+                            <li class="nav-item">
+                                <a href="{{ url('/estado') }}" class="nav-link">Estado</a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a href="{{ url('/consultorio') }}" class="nav-link">Consultório</a>
-                    </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/cidade') }}" class="nav-link">Cidade</a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a href="{{ url('/especialidade') }}" class="nav-link">Especialidade</a>
-                    </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/endereco') }}" class="nav-link">Endereço</a>
+                            </li>
 
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Médico
-                        </a>
+                            <li class="nav-item">
+                                <a href="{{ url('/consultorio') }}" class="nav-link">Consultório</a>
+                            </li>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{url('/medicoespecialidade')}}">Especialidade</a>
+                            <li class="nav-item">
+                                <a href="{{ url('/especialidade') }}" class="nav-link">Especialidade</a>
+                            </li>
+                        @endif
 
-                            <a class="dropdown-item" href="{{url('/medicoconsultorio')}}">Consultório</a>
-                        </div>
+                        @if ($bMedico || $bUsuarioAdm)
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Médico
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if($bMedico)
+                                        <a class="dropdown-item" href="{{url('/medicoespecialidade')}}">Especialidade</a>
+                                    @endif
 
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ url('/calendario') }}" class="nav-link">Calendário</a>
-                    </li>
+                                        <a class="dropdown-item" href="{{url('/medicoconsultorio')}}">Consultório</a>
+                                </div>
+                            </li>
+                        @endif
+                        @if ($bMedico)
+                            <li class="nav-item">
+                                <a href="{{ url('/calendario') }}" class="nav-link">Calendário</a>
+                            </li>
+                        @endif
+                    @endauth
 
                 </ul>
 
