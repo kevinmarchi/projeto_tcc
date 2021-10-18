@@ -51,6 +51,7 @@ class MedicoConsultorioController extends Controller
 
     private function getMedicoConsultorios() {
         $oQuery = MedicoConsultorio::query()
+                  ->select(['tbmedicoconsultorio.meccodigo', 'tbmedicoconsultorio.concodigo', 'tbmedicoconsultorio.medcodigo'])
                   ->join('tbmedico', 'tbmedicoconsultorio.medcodigo', '=', 'tbmedico.medcodigo')
                   ->leftJoin('tbusuariomedicoconsultorio', 'tbusuariomedicoconsultorio.meccodigo', '=', 'tbmedicoconsultorio.meccodigo')
                   ->where('tbmedico.usucodigo', '=', Auth::user()->usucodigo)

@@ -17,7 +17,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $oMedicos = MedicoConsultorio::all()
+        $oMedicos = MedicoConsultorio::query()
                     ->join('tbmedicoespecialidade', 'tbmedicoespecialidade.medcodigo', '=', 'tbmedicoconsultorio.medcodigo')
                     ->get();
 
