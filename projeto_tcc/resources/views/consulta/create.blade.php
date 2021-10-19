@@ -9,54 +9,59 @@
                     <div class="card-header">{{ __('Agendar Consulta Médica') }}</div>
 
                     <div class="card-body">
-
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <h5 class="card-title">Informações do Médico</h5>
-                                <p class="card-text">Nome: {{$oMedicoConsultorio->medico->user->usunome}}</p>
-                                <p class="card-text">CPF: {{$oMedicoConsultorio->medico->user->usucpf}}</p>
-                                <p class="card-text">Registro: {{$oMedicoConsultorio->medico->medregistro}}</p>
-                            </div>
-                        </div>
-
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <h5 class="card-title">Informações do Consultório</h5>
-                                <p class="card-text">Nome: {{$oMedicoConsultorio->consultorio->condescricao}}</p>
-                                <p class="card-text">
-                                    Endereço: {{$oMedicoConsultorio->consultorio->endereco->endlogradouro}},
-                                    Número: {{$oMedicoConsultorio->consultorio->endereco->endnumero}},
-                                    Complemento: {{$oMedicoConsultorio->consultorio->endereco->endcomplemento}}.
-                                </p>
-                                <p class="card-text">Cidade: {{$oMedicoConsultorio->consultorio->endereco->cidade->cidnome}}</p>
-                                <p class="card-text">Estado: {{$oMedicoConsultorio->consultorio->endereco->cidade->estado->estnome}}</p>
-                            </div>
-                        </div>
-
-                        <form action="{{route('consulta/store')}}" method="post">
-                            @csrf
-
-                            <input type="hidden" name="usucodigo" value="{{Auth::user()->usucodigo}}">
-
-                            <div class="card mb-2">
+                        <div class="row">
+                            <div class="card mb-2 col-6">
                                 <div class="card-body">
-                                    <h5 class="card-title">Horários disponíveis</h5>
-                                    @foreach($oAgendaHorario as $oHorario)
-                                        <div class="form-check">
-                                            <input type="radio" name="aghcodigo" value="{{$oHorario->aghcodigo}}" id="{{$oHorario->aghcodigo}}" class="form-check-input">
-                                            <label for="{{$oHorario->aghcodigo}}" class="form-check-label">
-                                                Dia: {{\Carbon\Carbon::parse($oHorario->aghdata)->format('d/m/Y')}}
-                                                Horario: {{$oHorario->aghhorarioinicio}} - {{$oHorario->aghhorariofim}}
-                                            </label>
-                                        </div>
-                                    @endforeach
+                                    <h5 class="card-title">Informações do Médico</h5>
+                                    <p class="card-text">Nome: {{$oMedicoConsultorio->medico->user->usunome}}</p>
+                                    <p class="card-text">CPF: {{$oMedicoConsultorio->medico->user->usucpf}}</p>
+                                    <p class="card-text">Registro: {{$oMedicoConsultorio->medico->medregistro}}</p>
                                 </div>
                             </div>
 
-                            <div>
-                                <button type="submit" class="btn btn-lg btn-success">Agendar Consulta</button>
+                            <div class="card mb-2 col-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Informações do Consultório</h5>
+                                    <p class="card-text">Nome: {{$oMedicoConsultorio->consultorio->condescricao}}</p>
+                                    <p class="card-text">
+                                        Endereço: {{$oMedicoConsultorio->consultorio->endereco->endlogradouro}},
+                                        Número: {{$oMedicoConsultorio->consultorio->endereco->endnumero}},
+                                        Complemento: {{$oMedicoConsultorio->consultorio->endereco->endcomplemento}}.
+                                    </p>
+                                    <p class="card-text">Cidade: {{$oMedicoConsultorio->consultorio->endereco->cidade->cidnome}}</p>
+                                    <p class="card-text">Estado: {{$oMedicoConsultorio->consultorio->endereco->cidade->estado->estnome}}</p>
+                                </div>
                             </div>
-                        </form>
+                        </div>
+
+                        <div class="row">
+
+                            <form action="{{route('consulta/store')}}" method="post" style="width: 100%">
+                                @csrf
+
+                                <input type="hidden" name="usucodigo" value="{{Auth::user()->usucodigo}}">
+
+                                <div class="card mb-2 col-12">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Horários disponíveis</h5>
+                                        @foreach($oAgendaHorario as $oHorario)
+                                            <div class="form-check">
+                                                <input type="radio" name="aghcodigo" value="{{$oHorario->aghcodigo}}" id="{{$oHorario->aghcodigo}}" class="form-check-input">
+                                                <label for="{{$oHorario->aghcodigo}}" class="form-check-label">
+                                                    Dia: {{\Carbon\Carbon::parse($oHorario->aghdata)->format('d/m/Y')}}
+                                                    Horario: {{$oHorario->aghhorarioinicio}} - {{$oHorario->aghhorariofim}}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="submit" class="btn btn-lg btn-success">Agendar Consulta</button>
+                                </div>
+                            </form>
+
+                        </div>
 
                     </div>
                 </div>

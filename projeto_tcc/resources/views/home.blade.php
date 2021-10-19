@@ -35,7 +35,7 @@
                                             {{$oMedicoEspecialidade->especialidade->espnome}},
                                         @endforeach
                                     </td>
-                                    <td></td>
+                                    <td>{{$oMedico->nota}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{route('consulta/create', ['iCodigo' => $oMedico->meccodigo])}}" class="btn btn-sm btn-primary">Agendar</a>

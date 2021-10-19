@@ -23,7 +23,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Logradouro</label>
+                                <label>Complemento</label>
                                 <textarea name="endcomplemento" class="form-control" required>{{old('endcomplemento')}}</textarea>
                             </div>
 
