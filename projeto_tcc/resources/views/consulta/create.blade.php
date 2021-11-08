@@ -16,6 +16,11 @@
                                     <p class="card-text">Nome: {{$oMedicoConsultorio->medico->user->usunome}}</p>
                                     <p class="card-text">CPF: {{$oMedicoConsultorio->medico->user->usucpf}}</p>
                                     <p class="card-text">Registro: {{$oMedicoConsultorio->medico->medregistro}}</p>
+                                    <p class="card-text">Especialidade(s):
+                                        @foreach($oMedicoConsultorio->medico->medicoespecialidade as $oMedicoEspecialidade)
+                                            {{$oMedicoEspecialidade->especialidade->espnome}},
+                                        @endforeach
+                                    </p>
                                 </div>
                             </div>
 
@@ -30,6 +35,10 @@
                                     </p>
                                     <p class="card-text">Cidade: {{$oMedicoConsultorio->consultorio->endereco->cidade->cidnome}}</p>
                                     <p class="card-text">Estado: {{$oMedicoConsultorio->consultorio->endereco->cidade->estado->estnome}}</p>
+                                    <h5>Contatos:</h5>
+                                    @foreach($oMedicoConsultorio->consultorio->contato as $oContato)
+                                        <p class="card-text">Tipo: {{\App\Models\ListaUtil::getListaTipoContato($oContato->cnttipo)}}, Descrição: {{$oContato->cntdescricao}}</p>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

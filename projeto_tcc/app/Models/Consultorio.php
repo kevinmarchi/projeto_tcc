@@ -28,4 +28,8 @@ class Consultorio extends Model
     public function consultoriohorario() {
         return $this->hasMany(ConsultorioHorario::class, 'concodigo', 'concodigo');
     }
+
+    public function contato() {
+        return $this->hasMany(Contato::class, 'concodigo', 'concodigo');
+    }
 }
