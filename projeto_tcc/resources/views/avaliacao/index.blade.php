@@ -20,7 +20,7 @@
                                 <tbody>
                                 @foreach($oAvaliacoes as $oAvaliacao)
                                     <tr>
-                                        <td>{{$oAvaliacao->consulta->user->usunome}}</td>
+                                        <td>{{explode(' ', $oAvaliacao->consulta->user->usunome)[0]}}</td>
                                         <td>{{$oAvaliacao->avadescricao}}</td>
                                         <td>{{$oAvaliacao->avanota}}</td>
                                     </tr>

@@ -44,8 +44,8 @@
                                             <td>{{$oConsultaAdmin->agendahorario->agenda->medicoconsultorio->medico->user->usunome}}</td>
                                             <td>{{$oConsultaAdmin->agendahorario->agenda->medicoconsultorio->consultorio->condescricao}}</td>
                                             <td>{{\Carbon\Carbon::parse($oConsultaAdmin->agendahorario->aghdata)->format('d/m/Y')}}</td>
-                                            <td>{{$oConsultaAdmin->agendahorario->aghhorarioinicio}}</td>
-                                            <td>{{$oConsultaAdmin->agendahorario->aghhorariofim}}</td>
+                                            <td>{{\Carbon\Carbon::parse($oConsultaAdmin->agendahorario->aghhorarioinicio)->format('H:i')}}</td>
+                                            <td>{{\Carbon\Carbon::parse($oConsultaAdmin->agendahorario->aghhorariofim)->format('H:i')}}</td>
                                             <td>{{$oConsultaAdmin->cnssituacao}}</td>
                                             <td>
                                                 <div class="btn-group">
@@ -83,8 +83,8 @@
                                                     <td>{{$oConsultaUsuario->agendahorario->agenda->medicoconsultorio->medico->user->usunome}}</td>
                                                     <td>{{$oConsultaUsuario->agendahorario->agenda->medicoconsultorio->consultorio->condescricao}}</td>
                                                     <td>{{\Carbon\Carbon::parse($oConsultaUsuario->agendahorario->aghdata)->format('d/m/Y')}}</td>
-                                                    <td>{{$oConsultaUsuario->agendahorario->aghhorarioinicio}}</td>
-                                                    <td>{{$oConsultaUsuario->agendahorario->aghhorariofim}}</td>
+                                                    <td>{{\Carbon\Carbon::parse($oConsultaUsuario->agendahorario->aghhorarioinicio)->format('H:i')}}</td>
+                                                    <td>{{\Carbon\Carbon::parse($oConsultaUsuario->agendahorario->aghhorariofim)->format('H:i')}}</td>
                                                     <td>{{$oConsultaUsuario->cnssituacao}}</td>
                                                     <td>
                                                         <div class="btn-group">

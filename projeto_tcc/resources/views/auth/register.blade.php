@@ -34,14 +34,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="telefone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="telefone" type="text" class="form-control" name="usutelefone" value="{{ old('usutelefone') }}" required autofocus>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="datanascimento" class="col-md-4 col-form-label text-md-right">{{ __('Data de Nascimento') }}</label>
 
                             <div class="col-md-6">

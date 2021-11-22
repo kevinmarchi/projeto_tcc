@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->id('usucodigo');
             $table->string('usunome', 100);
             $table->string('usucpf', 20);
-            $table->string('usutelefone', 50);
             $table->date('usudatanascimento');
             $table->smallInteger('usutipo')->default(1);
             $table->boolean('usuativo')->default(1);
