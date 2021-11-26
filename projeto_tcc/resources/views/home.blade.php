@@ -14,12 +14,26 @@
                         </div>
                     @endif
 
+                    <h7>Filtros:</h7>
+                    <form action="{{route('home/search')}}" class="form form-inline">
+                        @csrf
+                        <select name="filter-option" class="form-control mb-2 mr-1">
+                            <option>Selecione...</option>
+                            <option value="1">Cidade</option>
+                            <option value="2">Nome do Médico</option>
+                            <option value="3">Consultório</option>
+                        </select>
+                        <input type="text" name="filter-value" placeholder="Valor" class="form-control mb-2" style="width: 63%">
+                        <button type="submit" class="btn btn-info mb-2">Pesquisar</button>
+                    </form>
+
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Médico</th>
                                 <th>Consultório</th>
+                                <th>Cidade</th>
                                 <th>Especialidade(s)</th>
                                 <th>Avaliações</th>
                                 <th>Ações</th>
@@ -30,6 +44,7 @@
                                 <tr>
                                     <td>{{$oMedico->medico->user->usunome}}</td>
                                     <td>{{$oMedico->consultorio->condescricao}}</td>
+                                    <td>{{$oMedico->consultorio->endereco->cidade->cidnome}}</td>
                                     <td>
                                         @foreach($oMedico->medico->medicoespecialidade as $oMedicoEspecialidade)
                                             {{$oMedicoEspecialidade->especialidade->espnome}},

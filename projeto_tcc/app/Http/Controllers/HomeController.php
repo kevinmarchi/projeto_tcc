@@ -18,12 +18,41 @@ class HomeController extends Controller
 
     public function index()
     {
+        $oMedicos = $this->getQueryConsulta()->get();
+
+        return view('home', compact('oMedicos'));
+    }
+
+    public function search(Request $request) {
+        $oRequest = $request->all();
+        $oQuery = $this->getQueryConsulta();
+
+        if (isset($oRequest['filter-option'])) {
+            switch ($oRequest['filter-option']) {
+                case 1:
+                    $oQuery->where('tbcidade.cidnome', 'ILIKE', '%'.$oRequest['filter-value'].'%');
+                break;
+                case 2:
+                    $oQuery->where('users.usunome', 'ILIKE', '%'.$oRequest['filter-value'].'%');
+                break;
+                case 3:
+                    $oQuery->where('tbconsultorio.condescricao', 'ILIKE', '%'.$oRequest['filter-value'].'%');
+                break;
+            }
+        }
+
+        $oMedicos = $oQuery->get();
+
+        return view('home', compact('oMedicos'));
+    }
+
+    private function getQueryConsulta() {
         $oMedicos = MedicoConsultorio::query()
-                    ->select([
-                        'tbmedicoconsultorio.meccodigo',
-                        'tbmedicoconsultorio.concodigo',
-                        'tbmedicoconsultorio.medcodigo',
-                        DB::raw("(
+            ->select([
+                'tbmedicoconsultorio.meccodigo',
+                'tbmedicoconsultorio.concodigo',
+                'tbmedicoconsultorio.medcodigo',
+                DB::raw("(
                                         SELECT AVG(avanota)::numeric(4,2)
                                           FROM tbavaliacao
                                           JOIN tbconsulta
@@ -36,11 +65,20 @@ class HomeController extends Controller
                                             ON \"1\".meccodigo = tbagenda.meccodigo
                                          WHERE \"1\".medcodigo = tbmedicoconsultorio.medcodigo
                                         ) as nota"
-                        )
-                    ])
-                    ->join('tbmedicoespecialidade', 'tbmedicoespecialidade.medcodigo', '=', 'tbmedicoconsultorio.medcodigo')
-                    ->get();
+                ),
+                'users.usunome',
+                'tbcidade.cidnome',
+                'tbconsultorio.condescricao',
+                'tbcidade.cidnome'
+            ])
+            ->join('tbmedicoespecialidade', 'tbmedicoespecialidade.medcodigo', '=', 'tbmedicoconsultorio.medcodigo')
+            ->join('tbmedico'             , 'tbmedico.medcodigo'             , '=', 'tbmedicoconsultorio.medcodigo')
+            ->join('users'                , 'users.usucodigo'                , '=', 'tbmedico.usucodigo')
+            ->join('tbconsultorio'        , 'tbconsultorio.concodigo'        , '=', 'tbmedicoconsultorio.concodigo')
+            ->join('tbendereco'           , 'tbendereco.endcodigo'           , '=', 'tbconsultorio.endcodigo')
+            ->join('tbcidade'             , 'tbcidade.cidcodigo'           , '=', 'tbendereco.cidcodigo');
 
-        return view('home', compact('oMedicos'));
+        return $oMedicos;
+
     }
 }
