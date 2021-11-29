@@ -52,7 +52,7 @@
                                                     <a href="{{route('consulta/cancel', ['consulta'=>$oConsultaAdmin->cnscodigo])}}" class="btn btn-sm btn-danger">Cancelar</a>
                                                     <a href="{{route('consulta/confirm', ['consulta'=>$oConsultaAdmin->cnscodigo])}}" class="btn btn-sm btn-success">Confirmar</a>
                                                     <a href="{{route('consulta/finalize', ['consulta'=>$oConsultaAdmin->cnscodigo])}}" class="btn btn-sm btn-primary">Finalizar</a>
-                                                    <a href="{{route('contato', ['iTipo' => '1', 'iCodigo' => $oConsultaAdmin->usucodigo])}}" class="btn btn-sm btn-secondary">Contato</a>
+                                                    <a href="{{route('contato', ['iTipo' => '1', 'iCodigo' => \App\Models\Consulta::find($oConsultaAdmin->cnscodigo)->user->usucodigo])}}" class="btn btn-sm btn-secondary">Contato</a>
                                                 </div>
                                             </td>
                                         </tr>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agenda;
 use App\Models\AgendaHorario;
 use App\Models\Consulta;
 use App\Models\ListaUtil;
@@ -47,16 +48,22 @@ class ConsultaController extends Controller
     {
         $oMedicoConsultorio = MedicoConsultorio::find($iCodigo);
 
-        $oAgenda = DB::table('tbagenda')
+        $oQuery = DB::table('tbagenda')
                    ->join('tbcalendario', 'tbagenda.calcodigo', '=', 'tbcalendario.calcodigo')
                    ->where('meccodigo', '=', $iCodigo)
                    ->where('calano', '=', Carbon::now()->format('Y'))
-                   ->get()[0];
+                   ->get();
+
+        $oAgenda = new Agenda();
+        if (isset($oQuery[0])) {
+            $oAgenda = $oQuery[0];
+        }
 
         $oAgendaHorario = DB::table('tbagendahorario')
                           ->where('agencodigo', '=', $oAgenda->agencodigo)
                           ->where('aghsituacao', '=', 1)
                           ->orderBy('aghdata')
+                          ->orderBy('aghhorarioinicio')
                           ->get();
 
         return view('consulta.create', [

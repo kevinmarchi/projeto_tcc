@@ -63,15 +63,24 @@ class HomeController extends Controller
                                             ON tbagenda.agencodigo = tbagendahorario.agencodigo
                                           JOIN tbmedicoconsultorio as \"1\"
                                             ON \"1\".meccodigo = tbagenda.meccodigo
-                                         WHERE \"1\".medcodigo = tbmedicoconsultorio.medcodigo
+                                         WHERE \"1\".meccodigo = tbmedicoconsultorio.meccodigo
                                         ) as nota"
+                ),
+                DB::raw("(
+                                        SELECT string_agg(espnome::text, ', ')
+                                          FROM(
+                                               SELECT espnome
+                                                 FROM tbmedicoespecialidade
+                                                 JOIN tbespecialidade
+                                                   ON tbmedicoespecialidade.espcodigo = tbespecialidade.espcodigo
+                                                WHERE medcodigo = tbmedico.medcodigo) as especialidades
+                                        ) as especialidade"
                 ),
                 'users.usunome',
                 'tbcidade.cidnome',
                 'tbconsultorio.condescricao',
                 'tbcidade.cidnome'
             ])
-            ->join('tbmedicoespecialidade', 'tbmedicoespecialidade.medcodigo', '=', 'tbmedicoconsultorio.medcodigo')
             ->join('tbmedico'             , 'tbmedico.medcodigo'             , '=', 'tbmedicoconsultorio.medcodigo')
             ->join('users'                , 'users.usucodigo'                , '=', 'tbmedico.usucodigo')
             ->join('tbconsultorio'        , 'tbconsultorio.concodigo'        , '=', 'tbmedicoconsultorio.concodigo')

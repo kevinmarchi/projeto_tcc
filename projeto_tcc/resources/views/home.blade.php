@@ -45,11 +45,7 @@
                                     <td>{{$oMedico->medico->user->usunome}}</td>
                                     <td>{{$oMedico->consultorio->condescricao}}</td>
                                     <td>{{$oMedico->consultorio->endereco->cidade->cidnome}}</td>
-                                    <td>
-                                        @foreach($oMedico->medico->medicoespecialidade as $oMedicoEspecialidade)
-                                            {{$oMedicoEspecialidade->especialidade->espnome}},
-                                        @endforeach
-                                    </td>
+                                    <td>{{$oMedico->especialidade}}</td>
                                     <td>{{number_format($oMedico->nota,2,',','.')}}</td>
                                     <td>
                                         <div class="btn-group">
