@@ -20,9 +20,14 @@ class MedicoEspecialidadeController extends Controller
 
     public function create()
     {
-        $oMedico = Medico::query()->join('users', 'tbmedico.usucodigo', '=', 'users.usucodigo')
-                                  ->where('tbmedico.usucodigo', '=', Auth::user()->usucodigo)->get()[0];
+        $oQuery = Medico::query()->join('users', 'tbmedico.usucodigo', '=', 'users.usucodigo')
+                                  ->where('tbmedico.usucodigo', '=', Auth::user()->usucodigo)->get();
         $oEspecialidades = Especialidade::all();
+
+        $oMedico = new Medico();
+        if (isset($oQuery[0])) {
+            $oMedico = $oQuery[0];
+        }
 
         return view('medicoespecialidade.create', [
             'oMedico' => $oMedico,
